@@ -79,9 +79,7 @@ $(document).ready(function() { // Wait for the document to be ready
         modalTitle.append(figcaptionContent); // Use the cached variable 'modalTitle'
         // --- End Populate Modal ---
 
-
         // Show modal and update UI
-
         modal.removeClass('close').addClass('open');
         header.hide();
         body.css({ 'overflow-y': 'hidden', 'overflow-x': 'hidden' });
