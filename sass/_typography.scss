@@ -1,0 +1,124 @@
+h1 {
+  font-size: $font-largest-xxxx;
+  font-weight: 400;
+  color: white;
+  line-height: $line-largest-x;
+  text-shadow: 0 0 8px #ff69ef;
+  @include respond(smaller) {
+    font-size: $font-largest-x;
+    line-height: $line-largest;
+  }
+}
+
+h2 {
+  font-family: $font-primary;
+  margin-top: 4rem;
+  font-size: $font-normal;
+  font-weight: normal;
+  line-height: $font-normal;
+  color: $color-1-lightest;
+
+  @include respond(smaller) {
+    font-size: $font-small;
+    line-height: $line-small;
+  }
+  @include respond(smallest) {
+    margin-top: .4rem;
+  }
+}
+
+h3 {
+  font-family: $font-display;
+  font-size: $font-largest;
+  font-weight: normal;
+  color: $color-2-lighter;
+  line-height: $line-largest;
+  @include respond(smaller) {
+    font-size: $font-larger;
+    line-height: $line-larger;
+  }
+}
+
+h4 {
+  font-family: $font-display;
+  font-size: $font-larger;
+  font-weight: normal;
+  color: $color-1-lightest;
+  line-height: $line-larger;
+  @include respond(smaller) {
+    font-size: $font-large;
+    line-height: $line-large;
+  }
+}
+
+h5 {
+  font-size: $font-larger;
+  font-weight: normal;
+  color: $color-2-lightest;
+  line-height: $line-larger;
+  @include respond(smaller) {
+    font-size: $font-large;
+    line-height: $line-large;
+  }
+}
+
+h6 {
+  font-size: $font-large;
+  font-weight: normal;
+  color: $color-gray-3;
+  line-height: $line-large;
+  @include respond(smaller) {
+    font-size: $font-normal;
+    line-height: $line-normal;
+  }
+
+  i {
+    font-size: $font-normal;
+    color: rgba(193, 198, 203, 0.65);
+  }
+
+}
+
+p {
+  font-family: $font-display;
+  font-size: $font-large;
+  font-weight: 100;
+  color: white;
+  line-height: $line-large;
+  padding: $gap-smallest 0 $gap-smaller 0;
+  text-shadow: 0 0 1rem #02042c;
+  @include respond(smaller) {
+    font-size: $font-normal;
+    line-height: $line-normal;
+  }
+}
+
+ul {
+  list-style: none;
+  font-size: $font-normal;
+
+  li {
+    padding: $gap-smallest 0;
+  }
+}
+
+
+a {
+  font-style: italic;
+  transition: all .6s;
+
+  &:link, &:visited {
+    color: $color-2-lightest;
+  }
+
+  &:hover {
+    color: $color-1-lightest;
+  }
+}
+
+@media (max-width: 768px) {
+  h1, h2, h3, h4, h5, h6, p, ul, ol, li, a {
+    font-family: $font-primary;
+  }
+}
+

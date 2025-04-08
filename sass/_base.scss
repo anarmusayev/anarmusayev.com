@@ -1,0 +1,2613 @@
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: $font-primary;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(13, 0, 51);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4c0796;
+  border-radius: 10px;
+  border: 1px solid #781cdc;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 16px = 100% >>> 10px = 62.5%
+  position: relative;
+  background-color: rgb(44, 2, 54);
+}
+
+body {
+  font-family: $font-primary;
+  transition: all .4s;
+  color: $color-gray-0;
+  background-color: #18022f;
+  background: linear-gradient(314deg,
+          rgb(21, 0, 28) 0%,
+          rgb(12, 5, 42) 100%);
+
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 3;
+  background-color: rgba(4, 23, 61, 0.04);
+  transition: all .4s;
+  opacity: 0;
+  animation: moveInDown .6s .2s forwards;
+}
+
+#top-menu {
+  padding: $gap-normal;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin: 0;
+  @include respond(normal) {
+    display: none;
+  }
+
+  nav {
+    ul {
+      list-style: none;
+      color: $color-gray-0;
+      display: flex;
+
+      li {
+        a, a:link, a:visited {
+          list-style: none;
+          color: $color-gray-0;
+          font-size: $gap-small;
+          text-decoration: none;
+          margin: 0 $gap-tiny;
+          font-weight: normal;
+          font-style: normal;
+          position: relative;
+          display: flex;
+          padding: $gap-smaller;
+          transition: all .4s;
+          overflow: hidden;
+          @include respond(larger) {
+            font-size: $font-small;
+            padding: 10px 10px;
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 50%;
+            left: 0;
+            bottom: 0;
+            background-color: $color-1-lightest;
+            transition: all .4s;
+            transform: translateX(-100%);
+            z-index: -1;
+          }
+
+          &:after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 50%;
+            right: 0;
+            bottom: 0;
+            background-color: $color-2-lightest;
+            transition: all .4s .2s;
+            transform: translateX(100%);
+            z-index: -2;
+          }
+
+          &:hover {
+            &::before {
+              transform: translateX(0);
+            }
+
+            &::after {
+              transform: translateX(0);
+            }
+          }
+        }
+
+        a.active {
+          color: $color-2-lightest;
+          //  border: solid thin $color-1-lightest;
+          // border-radius: 2px;
+          // box-shadow: 0 0 10px rgba(239, 119, 181, 0.3),
+          // 0 0 30px rgba(239, 119, 181, 0.3),
+          // 0 0 30px rgba(239, 119, 181, 0.3) inset;
+          // background-color: rgba(65, 6, 49, 0.6);
+
+          &:before {
+            display: none;
+          }
+
+          &:after {
+            display: none;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+#mobil-menu {
+  padding: $gap-normal;
+  transition: all .4s;
+  display: none;
+  background: linear-gradient(45deg, $color-1-darkest, $color-2-darkest);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 97px;
+  overflow: hidden;
+  margin: 0;
+
+  &.open {
+    height: 100vh;
+    transition: all .4s;
+
+    nav {
+      display: flex;
+      opacity: .8;
+
+      ul {
+        li {
+          a, a:link, a:visited {
+            font-style: normal;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+  }
+
+  @include respond(normal) {
+    display: block;
+  }
+
+  nav {
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: all .4s;
+    opacity: 0;
+
+    ul {
+
+      li {
+        list-style: none;
+        font-size: 40px;
+        padding-top: 10px;
+
+        a, a:link, a:visited {
+          text-decoration: 0;
+          color: white;
+          transition: all .4s;
+          position: relative;
+          @include respond(smallest) {
+            font-size: 28px;
+          }
+
+          &:after {
+            transition: all .4s;
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: white;
+          }
+
+        }
+
+        a:hover {
+          color: $color-1-lightest;
+
+          &:after {
+            height: 2px;
+            width: 100%;
+            background-color: $color-1-lightest;
+          }
+        }
+
+        a.active {
+          color: rgba(125, 177, 253, 0.66);
+          border: solid 2px;
+          padding: 4px 10px;
+        }
+
+      }
+
+      a.button-primary, a.button-primary:link, a.button-primary:hover {
+        overflow: hidden;
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        font-size: 32px;
+        font-weight: normal;
+        border: none;
+        color: $color-1-lightest;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+    }
+  }
+}
+
+a img.logo-main {
+  width: 18%;
+  height: auto;
+  position: absolute;
+  left: 2rem;
+  top: 4.4rem;
+
+  @include respond(large) {
+    left: 2rem;
+    top: 1rem;
+    width: 16%;
+  }
+  @include respond(normal) {
+    width: 30%;
+    left: 2.2rem;
+    top: 3rem;
+  }
+  @include respond(small) {
+    width: 40%;
+  }
+  @include respond(smaller) {
+    width: 50%;
+  }
+  @include respond(smallest) {
+    width: 48%;
+    left: 2rem;
+    top: 3rem;
+  }
+  @include respond(tiny) {
+    left: 2rem;
+    top: 3.4rem;
+    width: 56%;
+  }
+}
+
+
+.nav {
+  width: 86%;
+}
+
+#bt-hamburger {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: none;
+  transition: all .4s;
+
+  @include respond(normal) {
+    display: block;
+  }
+
+  span {
+    display: block;
+    width: 100%;
+    height: 4px;
+    background-color: $color-1-lightest;
+    position: absolute;
+    transition: all .4s;
+  }
+
+  span:nth-child(1) {
+    top: 10px;
+  }
+
+  span:nth-child(2) {
+    top: 25px;
+  }
+
+  span:nth-child(3) {
+    top: 40px;
+  }
+
+  &:hover {
+
+    span:nth-child(1) {
+      top: 8px;
+    }
+
+    span:nth-child(2) {
+      top: 25px;
+    }
+
+    span:nth-child(3) {
+      top: 42px;
+    }
+  }
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+
+  .homeHeader {
+    margin-top: 12rem;
+    justify-content: left;
+
+    @include respond(smallest) {
+      margin-top: 4rem;
+    }
+
+    h1 {
+      font-family: $font-primary;
+      font-weight: 800;
+      align-self: start;
+      text-align: left;
+      color: transparent;
+      -webkit-text-stroke: 1px $color-2-lightest;
+      text-shadow: 0 0 2px rgba(106, 145, 245, 0.12),
+        //0 6px rgba(106, 166, 245, 0.1),
+      0 0 10px rgba(106, 224, 245, 0.07);
+      line-height: $line-largest;
+    }
+  }
+
+  .container {
+
+    ul {
+      li {
+        h6 {
+          padding-top: $gap-smaller;
+        }
+
+      }
+    }
+  }
+
+  a.button-img, a.button-img:visited, a.button-img:hover {
+    width: 120px;
+    height: 120px;
+    text-decoration: none;
+    font-size: $font-normal;
+    color: $color-1-light;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: block;
+    transition: all .4s;
+    position: relative;
+
+    @include respond(small) {
+      margin-bottom: 6rem;
+    }
+
+    @include respond(smallest) {
+      width: 60px;
+      height: 60px;
+      margin: 4px;
+    }
+
+    span {
+      transition: all .4s;
+      position: absolute;
+      opacity: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      @include respond(small) {
+        opacity: 1;
+        bottom: -3rem;
+        transform: translateX(-50%);
+      }
+      @include respond(smallest) {
+        display: none;
+      }
+    }
+
+
+    &#figma {
+      background-image: url("../img/home/figma-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/figma-h.png")
+      }
+    }
+
+    &#figma:hover {
+      background-image: url("../img/home/figma-h.png");
+    }
+
+    &#xd {
+      background-image: url("../img/home/xd-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/xd-h.png")
+      }
+    }
+
+    &#xd:hover {
+      background-image: url("../img/home/xd-h.png");
+    }
+
+    &#ps {
+      background-image: url("../img/home/ps-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/ps-h.png")
+      }
+    }
+
+    &#ps:hover {
+      background-image: url("../img/home/ps-h.png");
+    }
+
+    &#ai {
+      background-image: url("../img/home/ai-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/ai-h.png")
+      }
+    }
+
+    &#ai:hover {
+      background-image: url("../img/home/ai-h.png");
+    }
+
+    &#id {
+      background-image: url("../img/home/id-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/id-h.png")
+      }
+    }
+
+    &#id:hover {
+      background-image: url("../img/home/id-h.png");
+    }
+
+    &#pr {
+      background-image: url("../img/home/pr-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/pr-h.png")
+      }
+    }
+
+    &#pr:hover {
+      background-image: url("../img/home/pr-h.png");
+    }
+
+    &#ae {
+      background-image: url("../img/home/ae-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/ae-h.png")
+      }
+    }
+
+    &#ae:hover {
+      background-image: url("../img/home/ae-h.png");
+    }
+
+    &#me {
+      background-image: url("../img/home/me-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/me-h.png")
+      }
+    }
+
+    &#me:hover {
+      background-image: url("../img/home/me-h.png");
+    }
+
+    &#an {
+      background-image: url("../img/home/an-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/an-h.png")
+      }
+    }
+
+    &#an:hover {
+      background-image: url("../img/home/an-h.png");
+    }
+
+    &#blender {
+      background-image: url("../img/home/blnder-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/blnder-h.png")
+      }
+    }
+
+    &#blender:hover {
+      background-image: url("../img/home/blnder-h.png");
+    }
+
+    &#max {
+      background-image: url("../img/home/max-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/max-h.png")
+      }
+    }
+
+    &#max:hover {
+      background-image: url("../img/home/max-h.png");
+    }
+
+    &#vray {
+      background-image: url("../img/home/vray-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/vray-h.png")
+      }
+    }
+
+    &#vray:hover {
+      background-image: url("../img/home/vray-h.png");
+    }
+
+    &#fontforge {
+      background-image: url("../img/home/fontforge-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/fontforge-h.png")
+      }
+    }
+
+    &#fontforge:hover {
+      background-image: url("../img/home/fontforge-h.png");
+    }
+
+    &#html {
+      background-image: url("../img/home/html-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/html-h.png")
+      }
+    }
+
+    &#html:hover {
+      background-image: url("../img/home/html-h.png");
+    }
+
+    &#css {
+      background-image: url("../img/home/css-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/css-h.png")
+      }
+    }
+
+    &#css:hover {
+      background-image: url("../img/home/css-h.png");
+    }
+
+    &#sass {
+      background-image: url("../img/home/sass-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/sass-h.png")
+      }
+    }
+
+    &#sass:hover {
+      background-image: url("../img/home/sass-h.png");
+    }
+
+    &#bootstrap {
+      background-image: url("../img/home/bootstrap-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/bootstrap-h.png")
+      }
+    }
+
+    &#bootstrap:hover {
+      background-image: url("../img/home/bootstrap-h.png");
+    }
+
+    &#material {
+      background-image: url("../img/home/material-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/material-h.png")
+      }
+    }
+
+    &#material:hover {
+      background-image: url("../img/home/material-h.png");
+    }
+
+    &#tailwind {
+      background-image: url("../img/home/tailwind-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/tailwind-h.png")
+      }
+    }
+
+    &#tailwind:hover {
+      background-image: url("../img/home/tailwind-h.png");
+    }
+
+    &#js {
+      background-image: url("../img/home/js-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/js-h.png")
+      }
+    }
+
+    &#js:hover {
+      background-image: url("../img/home/js-h.png");
+    }
+
+    &#react {
+      background-image: url("../img/home/react-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/react-h.png")
+      }
+    }
+
+    &#react:hover {
+      background-image: url("../img/home/react-h.png");
+    }
+
+    &#jquery {
+      background-image: url("../img/home/jquery-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/jquery-h.png")
+      }
+    }
+
+    &#jquery:hover {
+      background-image: url("../img/home/jquery-h.png");
+    }
+
+    &#greensock {
+      background-image: url("../img/home/greensock-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/greensock-h.png")
+      }
+    }
+
+    &#greensock:hover {
+      background-image: url("../img/home/greensock-h.png");
+    }
+
+    &#npm {
+      background-image: url("../img/home/npm-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/npm-h.png")
+      }
+    }
+
+    &#npm:hover {
+      background-image: url("../img/home/npm-h.png");
+    }
+
+    &#native {
+      width: 240px;
+      background-image: url("../img/home/native-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/native-h.png")
+      }
+    }
+
+    &#native:hover {
+      background-image: url("../img/home/native-h.png");
+    }
+
+    &#expo {
+      background-image: url("../img/home/expo-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/expo-h.png")
+      }
+    }
+
+    &#expo:hover {
+      background-image: url("../img/home/expo-h.png");
+    }
+
+    &#firebase {
+      background-image: url("../img/home/firebase-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/firebase-h.png")
+      }
+    }
+
+    &#firebase:hover {
+      background-image: url("../img/home/firebase-h.png");
+    }
+
+    &#php {
+      background-image: url("../img/home/php-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/php-h.png")
+      }
+    }
+
+    &#php:hover {
+      background-image: url("../img/home/php-h.png");
+    }
+
+    &#laravel {
+      background-image: url("../img/home/laravel-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/laravel-h.png")
+      }
+    }
+
+    &#laravel:hover {
+      background-image: url("../img/home/laravel-h.png");
+    }
+
+    &#symp {
+      background-image: url("../img/home/symp-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/symp-h.png")
+      }
+    }
+
+    &#symp:hover {
+      background-image: url("../img/home/symp-h.png");
+    }
+
+    &#mysql {
+      background-image: url("../img/home/mysql-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/mysql-h.png")
+      }
+    }
+
+    &#mysql:hover {
+      background-image: url("../img/home/mysql-h.png");
+    }
+
+    &#maria {
+      background-image: url("../img/home/maria-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/maria-h.png")
+      }
+    }
+
+    &#maria:hover {
+      background-image: url("../img/home/maria-h.png");
+    }
+
+    &#nginx {
+      background-image: url("../img/home/nginx-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/nginx-h.png")
+      }
+    }
+
+    &#nginx:hover {
+      background-image: url("../img/home/nginx-h.png");
+    }
+
+    &#apache {
+      background-image: url("../img/home/apache-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/apache-h.png")
+      }
+    }
+
+    &#apache:hover {
+      background-image: url("../img/home/apache-h.png");
+    }
+
+    &#jira {
+      background-image: url("../img/home/jira-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/jira-h.png")
+      }
+    }
+
+    &#jira:hover {
+      background-image: url("../img/home/jira-h.png");
+    }
+
+    &#miro {
+      background-image: url("../img/home/miro-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/miro-h.png")
+      }
+    }
+
+    &#miro:hover {
+      background-image: url("../img/home/miro-h.png");
+    }
+
+    &#git {
+      background-image: url("../img/home/git-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/git-h.png")
+      }
+    }
+
+    &#git:hover {
+      background-image: url("../img/home/git-h.png");
+    }
+
+    &#postman {
+      background-image: url("../img/home/postman-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/postman-h.png")
+      }
+    }
+
+    &#postman:hover {
+      background-image: url("../img/home/postman-h.png");
+    }
+
+    &#github {
+      background-image: url("../img/home/github-n.png");
+      @include respond(small) {
+        background-image: url("../img/home/github-h.png")
+      }
+    }
+
+    &#github:hover {
+      background-image: url("../img/home/github-h.png");
+    }
+
+  }
+
+  a.button-img:hover {
+    span {
+      opacity: 1;
+      bottom: -3rem;
+      transform: translateX(-50%);
+    }
+  }
+
+  .stack-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+    border-style: dashed;
+    border-width: thin;
+    border-color: $color-2-light;
+    border-radius: .4rem;
+    padding: 3.2rem 2rem;
+    @include respond(larger) {
+      padding: 2rem 1rem;
+    }
+    @include respond(large) {
+      width: 100%;
+    }
+  }
+
+  .stack {
+    display: flex;
+    flex-wrap: wrap;
+    border-style: dashed;
+    border-width: thin;
+    border-color: $color-1-light;
+    border-radius: .4rem;
+    padding: 3.2rem 2rem;
+    gap: 1rem;
+    @include respond(larger) {
+      padding: 2rem 1rem;
+    }
+    @include respond(small) {
+      justify-content: space-around;
+    }
+    @include respond(smallest) {
+      justify-content: flex-start;
+    }
+  }
+
+  #home-banner {
+    height: 100vh;
+    position: relative;
+    padding: $gap-large $gap-normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+
+    .banner-labels {
+      position: fixed;
+      right: 44px;
+      bottom: 20px;
+      @include respond(small) {
+        right: unset;
+        left: 20px;
+      }
+
+      h3 {
+        font-family: $font-primary;
+        font-weight: normal;
+        color: white;
+        font-size: $font-small;
+        line-height: $line-small;
+        display: inline-block;
+        border-radius: 4px;
+        padding: $gap-smallest $gap-smaller;
+        margin: $gap-smallest $gap-smallest 0 0;
+        background-color: $color-1-darkest;
+        opacity: 0;
+      }
+
+      h3.blue {
+        background-color: $color-2-darker;
+        opacity: 0;
+      }
+
+      h3:nth-child(1) {
+        animation: moveInLeft .6s .4s forwards;
+      }
+
+      h3:nth-child(2) {
+        animation: moveInLeft .6s .6s forwards;
+      }
+
+      h3:nth-child(3) {
+        animation: moveInLeft .6s .8s forwards;
+      }
+
+    }
+
+    .banner-text {
+      position: absolute;
+      left: 4%;
+      width: fit-content;
+      height: auto;
+      z-index: 4;
+
+      @include respond(normal) {
+        bottom: 8rem;
+      }
+      @include respond(small) {
+        bottom: unset;
+        top: 14rem;
+      }
+
+      h1 {
+        font-family: $font-code;
+        color: white;
+        font-size: $font-largest;
+        line-height: $line-larger;
+        font-weight: normal;
+        text-shadow: 0 0 8px #ff69ef;
+        letter-spacing: -.4rem;
+
+        &.line-1 {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          border-right: 3px solid rgba(234, 144, 255, 0);
+          animation: typewriter 2s steps(32) 1s 1 normal both,
+          blinkTextCursor 400ms steps(32) 5 0s normal;
+        }
+
+        &.line-2 {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          border-right: 3px solid rgba(234, 144, 255, 0);
+          animation: typewriter 2s steps(22) 3s 1 normal both,
+          blinkTextCursor 400ms steps(22) 5 3s normal;
+        }
+
+        @include respond(small) {
+          width: 100%;
+          font-size: $font-larger;
+          line-height: $line-larger;
+        }
+
+        @include respond(smaller) {
+          font-size: $font-normal;
+          line-height: $line-normal;
+        }
+      }
+
+      h2 {
+        font-size: $font-large;
+        line-height: $line-large;
+        font-family: $font-code;
+        font-weight: 400;
+        letter-spacing: 0;
+        text-shadow: 0 0 2px #ea9dff;
+
+        @include respond(small) {
+          width: 100%;
+          font-size: $font-normal;
+          line-height: $line-normal;
+        }
+
+        @include respond(smaller) {
+          font-size: $font-small;
+          line-height: $line-small;
+        }
+
+        &.line-3 {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          border-right: 3px solid rgba(234, 144, 255, 0);
+          animation: typewriter 2s steps(32) 5s 1 normal both,
+          blinkTextCursor 400ms steps(32) 5 5s normal;
+        }
+      }
+
+    }
+
+    #mainImage {
+      position: absolute;
+      right: -20px;
+      top: 100px;
+      width: 140%;
+      height: calc(100% - 10rem);
+
+      @include respond(normal) {
+        top: 40px;
+      }
+
+      @include respond(smaller) {
+        right: -10%;
+      }
+
+      div {
+        position: absolute;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top right;
+
+        width: 50px;
+        height: 50px;
+
+        &#banner-lines {
+          bottom: 0;
+          right: 0;
+          width: 100rem;
+          height: 72rem;
+          transition: all .4s;
+          background-image: url("../img/banner/banner-lines.png");
+        }
+
+        &#banner-pc {
+          bottom: 36rem;
+          right: 20rem;
+          width: 35.2rem;
+          height: 28.8rem;
+          background-image: url("../img/banner/banner-pc.png");
+          transition: all .8s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 225px;
+            right: 3rem;
+          }
+
+          &:before {
+            content: 'CMS';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 2rem;
+            top: -2rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'PHP/Laravel';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 8rem;
+            top: 3rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-pc-w-1 {
+          bottom: 57rem;
+          right: 45rem;
+          width: 7.1rem;
+          height: 10.3rem;
+          background-image: url("../img/banner/banner-pc-w-1.png");
+          transition: all .2s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 252px;
+            right: 25rem;
+          }
+
+          &:before {
+            content: 'HTML';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 1rem;
+            top: -4rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'CSS';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 8rem;
+            top: -1rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-pc-w-2 {
+          bottom: 57rem;
+          right: 51rem;
+          width: 7.1rem;
+          height: 6.8rem;
+          background-image: url("../img/banner/banner-pc-w-2.png");
+          transition: all .5s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 297px;
+            right: 29rem;
+          }
+
+          &::before {
+            content: 'SASS';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 0rem;
+            top: -4rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &::after {
+            content: 'LESS';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 8rem;
+            top: -2rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &::before, &::after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-pc-w-3 {
+          bottom: 53rem;
+          right: 47rem;
+          width: 6.1rem;
+          height: 6rem;
+          background-image: url("../img/banner/banner-pc-w-3.png");
+          transition: all .3s;
+          @include respond(normal) {
+            top: 353px;
+            right: 29rem;
+          }
+
+          &:before {
+            content: 'Bootstrap';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 1rem;
+            top: -4rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'Material Design';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: 1rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-pc-w-4 {
+          bottom: 49rem;
+          right: 29rem;
+          width: 13.1rem;
+          height: 10.7rem;
+          background-image: url("../img/banner/banner-pc-w-4.png");
+          transition: all .4s;
+          @include respond(normal) {
+            top: 397px;
+            right: -3rem;
+          }
+
+          &::before {
+            content: 'tailwindcss';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: -1rem;
+            top: -3rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &::after {
+            content: 'Canvas';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: 1rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-pc-w-5 {
+          bottom: 51rem;
+          right: 38rem;
+          width: 5rem;
+          height: 4.7rem;
+          background-image: url("../img/banner/banner-pc-w-5.png");
+          transition: all .1s;
+          @include respond(normal) {
+            top: 414px;
+            right: 9rem;
+          }
+
+          &:before {
+            content: 'npm';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: -1rem;
+            top: -3.5rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &::after {
+            content: 'Node.js';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: 0rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-pc-w-6 {
+          bottom: 46rem;
+          right: 39rem;
+          width: 7rem;
+          height: 6.7rem;
+          background-image: url("../img/banner/banner-pc-w-6.png");
+          transition: all .6s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 448px;
+            right: 4rem;
+          }
+
+
+          &:before {
+            content: 'GreenSock';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 0rem;
+            top: -4rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'WebGL';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 8rem;
+            top: 1rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-pc-w-7 {
+          bottom: 49rem;
+          right: 27rem;
+          width: 5.4rem;
+          height: 4.7rem;
+          background-image: url("../img/banner/banner-pc-w-7.png");
+          transition: all .7s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 477px;
+            right: 2rem;
+          }
+
+
+        }
+
+        &#banner-pc-w-8 {
+          bottom: 48rem;
+          right: 17rem;
+          width: 10.4rem;
+          height: 7.9rem;
+          background-image: url("../img/banner/banner-pc-w-8.png");
+          transition: all .4s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 334px;
+            right: 14rem;
+          }
+
+          &::before {
+            content: 'REST APIs';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: -8rem;
+            top: -2rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'SOAP';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: 0rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-phone {
+          bottom: 14rem;
+          right: 56rem;
+          width: 41rem;
+          height: 22rem;
+          background-image: url("../img/banner/banner-phone.png");
+          transition: all .6s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 281px;
+            right: 37rem;
+          }
+
+
+          &:before {
+            content: 'Wireframing & Prototyping';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 4rem;
+            top: 17rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'UX Research';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 14rem;
+            top: 21rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-phone-w-1 {
+          bottom: 17rem;
+          right: 68rem;
+          width: 15rem;
+          height: 8rem;
+          background-image: url("../img/banner/banner-phone-w-1.png");
+          transition: all .5s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 311px;
+            right: 39rem;
+          }
+
+          &:before {
+            content: 'UserFlow';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 1rem;
+            top: 8rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'Information Architecture';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 14rem;
+            top: 9rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-phone-w-2 {
+          bottom: 23rem;
+          right: 82rem;
+          width: 12rem;
+          height: 6rem;
+          background-image: url("../img/banner/banner-phone-w-2.png");
+          transition: all .3s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 367px;
+            right: 56rem;
+          }
+
+          &:before {
+            content: 'Usability Testing';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 1rem;
+            top: 8rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'Product Management';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 14rem;
+            top: 2rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-phone-w-3 {
+          bottom: 24rem;
+          right: 68rem;
+          width: 16rem;
+          height: 8.3rem;
+          background-image: url("../img/banner/banner-phone-w-3.png");
+          transition: all .4s;
+          cursor: pointer;
+          @include respond(normal) {
+            top: 289px;
+            right: 49rem;
+          }
+
+          &:before {
+            content: 'Adobe Suite';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: -6rem;
+            top: -6rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'Blender';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 9rem;
+            top: -6rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-box-1 {
+          bottom: 12rem;
+          right: 23rem;
+          width: 32rem;
+          height: 22rem;
+          background-image: url("../img/banner/banner-box.png");
+          transition: all .2s .3s;
+
+          cursor: pointer;
+
+          &::before {
+            content: 'React';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: -2rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'jQuery';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 12rem;
+            top: 4rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+        &#banner-box-2 {
+          bottom: 54rem;
+          right: 60rem;
+          width: 23rem;
+          height: 14rem;
+          background-image: url("../img/banner/banner-box.png");
+          transition: all .3s .1s;
+          @include respond(normal) {
+            top: 108px;
+            right: 33rem;
+          }
+
+          &:before {
+            content: 'Figma';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 6rem;
+            top: -2rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &::after {
+            content: 'Jamboard';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 12rem;
+            top: 4rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+        }
+
+        &#banner-box-3 {
+          bottom: 62rem;
+          right: 5rem;
+          width: 19rem;
+          height: 12rem;
+          background-image: url("../img/banner/banner-box.png");
+          transition: all .5s;
+
+          &::before {
+            content: 'Git';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 1rem;
+            top: -2rem;
+            transition: all .4s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:after {
+            content: 'MySql';
+            color: white;
+            font-size: 22px;
+            border: solid thin white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            position: absolute;
+            right: 8rem;
+            top: -1rem;
+            transition: all .4s .2s;
+            opacity: 0;
+            transform: translateY(200%);
+            box-shadow: 0 0 1rem white;
+            background-color: rgba(44, 2, 54, 0.5);
+          }
+
+          &:hover {
+            &:before, &:after {
+              opacity: 1;
+              transform: translateY(0%);
+            }
+          }
+
+        }
+
+
+        @include respond(largest) {
+
+        }
+        @include respond(larger) {
+
+        }
+        @include respond(large) {
+
+        }
+        @include respond(normal) {
+
+        }
+        @include respond(small) {
+
+        }
+        @include respond(smaller) {
+
+        }
+        @include respond(smallest) {
+
+        }
+        @include respond(tiny) {
+
+        }
+
+      }
+
+    }
+
+  }
+
+  #hello {
+    //opacity: 0;
+
+    .header {
+      margin-top: 0;
+    }
+  }
+
+  #home-projects-header {
+    //opacity: 0;
+  }
+
+  #home-projects {
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem;
+    transition: all .4s;
+
+    .home-project {
+      flex-basis: calc(33% - 4rem);
+      border: solid thin #645778;
+      border-radius: 2px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all .4s;
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+
+      img {
+        transition: all .4s;
+        transform: scale(100%);
+      }
+
+      &:hover {
+        border: solid thin rgba(239, 119, 181, 0.8);
+        box-shadow: 0 0 10px rgba(239, 119, 181, 0.3), 0 0 30px rgba(239, 119, 181, 0.3), 0 0 30px rgba(239, 119, 181, 0.3) inset;
+        background-color: rgba(65, 6, 49, 0.6);
+        transition: all .4s;
+
+        img {
+          transition: all .4s;
+          transform: scale(116%);
+        }
+
+      }
+
+      @include respond(largest) {
+        flex-basis: calc(33% - 4rem);
+      }
+      @include respond(larger) {
+        flex-basis: calc(33% - 4rem);
+      }
+      @include respond(large) {
+        flex-basis: calc(50% - 4rem);
+      }
+      @include respond(normal) {
+        flex-basis: calc(50% - 4rem);
+      }
+      @include respond(small) {
+        flex-basis: calc(50% - 4rem);
+      }
+      @include respond(smaller) {
+        flex-basis: calc(100% - 4rem);
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+
+  }
+
+  .service {
+    display: flex;
+    flex-direction: row;
+    gap: $gap-normal;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10rem;
+
+    @include respond(normal) {
+      align-items: flex-start;
+    }
+
+    @include respond(small) {
+      flex-direction: column;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  #ux-design {
+    align-items: flex-end;
+    flex-direction: row-reverse;
+
+    @include respond(small) {
+      flex-direction: column;
+    }
+
+    div {
+      width: 60%;
+
+      @include respond(small) {
+        width: 100%;
+      }
+    }
+
+    div.ux-images {
+      width: 40%;
+      position: relative;
+      background-size: cover;
+      height: 100%;
+      margin-top: 40rem;
+
+      @include respond(small) {
+        width: 100%;
+      }
+
+      @include respond(smallest) {
+        margin-top: 30rem;
+      }
+
+      img {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%) translateY(0px);
+        max-width: 40rem;
+        width: 100%;
+        height: auto;
+        transition: bottom 0.5s ease-out;
+      }
+
+      img#ux-1 {
+        bottom: 0;
+      }
+
+      img#ux-2 {
+        bottom: 20px;
+      }
+
+      img#ux-3 {
+        bottom: 60px;
+      }
+    }
+  }
+
+  #web-design {
+
+    div {
+      width: 60%;
+      @include respond(small) {
+        width: 100%;
+      }
+    }
+
+    div.web-images {
+      width: 40%;
+      position: relative;
+      background-size: cover;
+      height: 100%;
+      margin-top: 40rem;
+
+      @include respond(small) {
+        width: 100%;
+      }
+
+      @include respond(smallest) {
+        margin-top: 30rem;
+        left: -2rem;
+      }
+
+      img {
+        position: absolute;
+        max-width: 40rem;
+        width: 100%;
+        height: auto;
+        transition: all 0.5s ease-out;
+      }
+
+      img#web-1 {
+        bottom: 0;
+        left: 0;
+
+      }
+
+      img#web-2 {
+        bottom: 3rem;
+        left: -7rem;
+        transform: translate(0, 0) scale(34%);
+      }
+
+      img#web-3 {
+        bottom: 2rem;
+        left: -1rem;
+        transform: translate(0, 0) scale(31%);
+      }
+
+      img#web-4 {
+        bottom: 5rem;
+        left: -6rem;
+        transform: translate(0, 0) scale(65%);
+      }
+
+      img#web-5 {
+        bottom: -3rem;
+        left: -6rem;
+        transform: translate(0, 0) scale(43%);
+      }
+    }
+  }
+
+  #mobile-design {
+    flex-direction: row-reverse;
+    @include respond(small) {
+      flex-direction: column;
+    }
+
+    div {
+      width: 60%;
+      @include respond(small) {
+        width: 100%;
+      }
+    }
+
+
+    div.mobile-images {
+      width: 20%;
+      position: relative;
+      background-size: cover;
+      height: 100%;
+      margin-top: 48rem;
+
+      @include respond(small) {
+        width: 100%;
+      }
+      @include respond(smallest) {
+        left: 5rem;
+      }
+
+      img {
+        position: absolute;
+        max-width: 40rem;
+        width: 100%;
+        height: auto;
+        transition: all 0.5s ease-out;
+      }
+
+      img#mobile-1 {
+        bottom: 0;
+        left: 0;
+      }
+
+      img#mobile-2 {
+        bottom: 0;
+        left: -.4rem;
+        transform: translate(0, 0) scale(92%);
+      }
+
+      img#mobile-3 {
+        bottom: 0;
+        left: -.4rem;
+        transform: translate(0, 0) scale(92%);
+      }
+
+      img#mobile-4 {
+        bottom: 0;
+        left: -.4rem;
+        transform: translate(0, 0) scale(92%);
+      }
+    }
+  }
+
+  #other-services {
+    div {
+      width: 100%;
+    }
+  }
+
+  #how-i-do {
+    .container {
+      margin: 4rem 0;
+
+      @include respond(smallest) {
+        margin: .4rem 0;
+      }
+
+      .content {
+        margin-bottom: 4rem;
+
+        @include respond(smallest) {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+
+  .ux-skills {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    row-gap: 4rem;
+    column-gap: 2rem;
+    flex-wrap: wrap;
+
+    @include respond(small) {
+      flex-direction: column;
+    }
+
+  }
+
+  .ux-skill {
+    display: grid;
+    width: calc(50% - 2rem);
+    padding: $gap-small;
+    align-items: center;
+    border-style: dashed;
+    border-width: thin;
+    border-color: $color-1-light;
+    border-radius: .4rem;
+    gap: 0 4rem;
+    grid-template-areas:
+            'i i h h h '
+            'i i t t t';
+
+    img {
+      grid-area: i;
+      width: 100%;
+      height: auto;
+    }
+
+    h4 {
+      align-items: end;
+      grid-area: h;
+      font-size: $font-large;
+      line-height: $line-normal;
+    }
+
+    p {
+      grid-area: t;
+    }
+
+    @include respond(large) {
+      grid-template-areas:
+            'i i h h h '
+            't t t t t';
+    }
+
+    @include respond(small) {
+      width: 100%;
+      gap: 0 2rem;
+    }
+
+  }
+
+  #crafting-design {
+    display: grid;
+    width: 100%;
+    gap: 4rem;
+    grid-template-columns:3fr 2fr;
+    @include respond(small) {
+      flex-direction: row;
+      grid-template-columns:1fr;
+      gap: 0;
+    }
+  }
+
+  #crafting-icons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    transition: all .4s;
+    border-style: dashed;
+    border-width: thin;
+    border-color: $color-1-light;
+    border-radius: .4rem;
+    @include respond(larger) {
+      gap: 1rem;
+    }
+    @include respond(large) {
+      gap: 0;
+    }
+    @include respond(small) {
+      padding: 2rem;
+      justify-content: space-around;
+    }
+    @include respond(smallest) {
+      justify-content: flex-start;
+    }
+
+
+  }
+
+  #tech-stack {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4rem 2rem;
+    transition: all .4s;
+  }
+
+  #collaboration-icons {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 4rem;
+    padding: 4rem 2rem;
+    transition: all .4s;
+    border-style: dashed;
+    border-width: thin;
+    border-color: $color-1-light;
+    border-radius: .4rem;
+    @include respond(large) {
+      gap: 1rem;
+      width: 100%;
+    }
+    @include respond(small) {
+      justify-content: space-around;
+    }
+    @include respond(smallest) {
+      justify-content: flex-start;
+    }
+  }
+
+  .pageHeader {
+    margin-top: $gap-largest;
+    padding-top: $gap-largest;
+    padding-bottom: $gap-smaller;
+
+    h1 {
+      font-family: $font-primary;
+      font-weight: 800;
+      align-self: start;
+      text-align: left;
+      color: transparent;
+      -webkit-text-stroke: 1px $color-2-lightest;
+      text-shadow: 0 0 2px rgba(106, 145, 245, 0.12),
+        //0 6px rgba(106, 166, 245, 0.1),
+      0 0 10px rgba(106, 224, 245, 0.07);
+      animation: header 2s forwards;
+      line-height: $line-largest;
+
+      @include respond(small) {
+        font-size: $font-largest-xx;
+      }
+
+      @include respond(smaller) {
+        font-size: $font-larger;
+        line-height: $font-larger;
+      }
+
+      @include respond(tiny) {
+        font-size: $font-large;
+        line-height: $font-large;
+      }
+
+    }
+  }
+
+  #web {
+    grid-template-columns: repeat(auto-fit,
+            calc(33.33333% - 20px));
+    grid-auto-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    @include respond(large) {
+      grid-template-columns: repeat(auto-fit,
+              calc(50% - 20px));
+    }
+    @include respond(small) {
+      grid-template-columns: repeat(auto-fit, 98%);
+    }
+
+    figure {
+      img {
+        width: calc(100% - 10px);
+        padding: 5px;
+      }
+    }
+  }
+
+  #applications, #videos {
+    grid-template-columns: repeat(auto-fit,
+            calc(25% - 20px));
+    grid-auto-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    @include respond(normal) {
+      grid-template-columns: repeat(auto-fit,
+              calc(33.33333% - 20px));
+    }
+    @include respond(small) {
+      grid-template-columns: repeat(auto-fit,
+              calc(50% - 20px));
+    }
+    @include respond(smaller) {
+      grid-template-columns: repeat(auto-fit,
+              calc(100% - 20px));
+    }
+
+    figure {
+      img {
+        width: calc(100% - 10px);
+        padding: 5px;
+      }
+    }
+  }
+
+  #corporate-design, #posters {
+    grid-template-columns: repeat(auto-fit,
+            calc(25% - 20px));
+    grid-auto-rows: auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    @include respond(normal) {
+      grid-template-columns: repeat(auto-fit,
+              calc(33.33333% - 20px));
+    }
+    @include respond(small) {
+      grid-template-columns: repeat(auto-fit,
+              calc(50% - 20px));
+    }
+    @include respond(smaller) {
+      grid-template-columns: repeat(auto-fit,
+              calc(100% - 20px));
+    }
+
+    figure {
+      img {
+        width: calc(100% - 10px);
+        padding: 5px;
+      }
+    }
+  }
+
+  #illustrations {
+    align-items: start;
+
+    figure {
+      padding: 3rem;
+      height: 100%;
+    }
+  }
+}
+
+
+footer {
+  background-color: $color-2-darkest;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  z-index: 2;
+  padding: 2rem;
+
+  p {
+    font-size: $font-small;
+  }
+
+  div.left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  div.center {
+
+  }
+
+  div.rights {
+
+  }
+
+  @include respond(small) {
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @include respond(smallest) {
+    flex-direction: column;
+  }
+
+  a#linkedin, a#linkedin:visited {
+    text-decoration: none;
+    width: 38px;
+    height: 38px;
+    margin: 6px;
+    display: block;
+    background-image: url("../img/icon-linkedin_n.svg");
+  }
+
+  a#linkedin:hover {
+    background-image: url("../img/icon-linkedin_h.svg");
+  }
+
+  a#behance, a#behance:visited {
+    text-decoration: none;
+    width: 38px;
+    height: 38px;
+    margin: 6px;
+    display: block;
+    background-image: url("../img/icon-behance_n.svg");
+  }
+
+  a#behance:hover {
+    background-image: url("../img/icon-behance_h.svg");
+  }
+
+  a#adobeStock, a#behance:visited {
+    text-decoration: none;
+    width: 38px;
+    height: 38px;
+    margin: 6px;
+    display: block;
+    background-image: url("../img/icon-adobe_n.svg");
+  }
+
+  a#adobeStock:hover {
+    background-image: url("../img/icon-adobe_h.svg");
+  }
+
+  a#gitHub, a#behance:visited {
+    text-decoration: none;
+    width: 38px;
+    height: 38px;
+    margin: 6px;
+    display: block;
+    background-image: url("../img/icon-gitHub_n.svg");
+  }
+
+  a#gitHub:hover {
+    background-image: url("../img/icon-gitHub_h.svg");
+  }
+
+}
+

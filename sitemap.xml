@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home Page -->
+    <url>
+        <loc>https://anarmusayev.com/</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Web Page -->
+    <url>
+        <loc>https://anarmusayev.com/web-sites</loc>
+        <lastmod>2023-10-10</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Applications Page -->
+    <url>
+        <loc>https://anarmusayev.com/applications</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Corporate Design Page -->
+    <url>
+        <loc>https://anarmusayev.com/corporate-design</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Posters Page -->
+    <url>
+        <loc>https://anarmusayev.com/posters</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Video & Animations Page -->
+    <url>
+        <loc>https://anarmusayev.com/video-and-animations</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Illustrations Page -->
+    <url>
+        <loc>https://anarmusayev.com/illustrations</loc>
+        <lastmod>2023-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Add more URL entries for other pages as needed -->
+
+</urlset>

@@ -1,0 +1,87 @@
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin centerElement {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+// RESPONSIVE
+@mixin respond($breakpoint) {
+
+  @if $breakpoint==tiny {
+    @media only screen and (max-width: $bp-tiny) {
+      @content
+    }
+  }
+
+  @if $breakpoint==smallest {
+    @media only screen and (max-width: $bp-smallest) {
+      @content
+    }
+  }
+
+  @if $breakpoint==smaller {
+    @media only screen and (max-width: $bp-smaller) {
+      @content
+    }
+  }
+
+  @if $breakpoint==small {
+    @media only screen and (max-width: $bp-small) {
+      @content
+    }
+  }
+
+  @if $breakpoint==normal {
+    @media only screen and (max-width: $bp-normal) {
+      @content
+    }
+  }
+
+  @if $breakpoint==large {
+    @media only screen and (max-width: $bp-large) {
+      @content
+    }
+  }
+
+  @if $breakpoint==larger {
+    @media only screen and (max-width: $bp-larger) {
+      @content
+    }
+  }
+
+
+  @if $breakpoint==largest {
+    @media only screen and (max-width: $bp-largest) {
+      @content
+    }
+  }
+
+}
+
+
+//FEATURES
+
+@mixin shadow {
+  box-shadow: 0 0 3rem rgba(245, 106, 177, 0.2);
+}
+
+@mixin glossy {
+  background-color: rgba(10, 20, 58, 0.2);
+  -webkit-backface-visibility: hidden;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+
+
+

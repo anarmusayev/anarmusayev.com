@@ -1,0 +1,151 @@
+// COLORS
+$color-1-darkest: rgba(91, 5, 77, 0.8);
+$color-1-darker: rgba(110, 14, 95, 0.8);
+$color-1-dark: rgba(140, 24, 107, 0.8);
+$color-1-normal: rgba(155, 32, 120, 0.8);
+$color-1-light: rgba(187, 58, 157, 0.8);
+$color-1-lighter: rgba(190, 72, 153, 0.8);
+$color-1-lightest: rgba(217, 114, 172, 0.8);
+
+$color-2-darkest: rgb(7, 23, 58);
+$color-2-darker: rgba(28, 41, 89, 0.8);
+$color-2-dark: rgba(31, 54, 103, 0.8);
+$color-2-normal: rgba(43, 74, 131, 0.8);
+$color-2-light: rgba(60, 88, 148, 0.8);
+$color-2-lighter: rgba(76, 106, 162, 0.8);
+$color-2-lightest: rgba(105, 160, 238, 0.66);
+
+$color-gray-0: rgba(255, 255, 255, 0.8); // White
+$color-gray-1: rgba(232, 238, 241, 0.8);
+$color-gray-2: rgba(214, 219, 224, 0.8);
+$color-gray-3: rgba(193, 198, 203, 0.8);
+$color-gray-4: rgba(172, 178, 182, 0.8);
+$color-gray-5: rgba(141, 147, 152, 0.8);
+$color-gray-6: rgba(123, 128, 132, 0.8);
+$color-gray-7: rgba(104, 109, 113, 0.8);
+$color-gray-8: rgba(84, 87, 91, 0.8);
+$color-gray-9: rgba(61, 63, 66, 0.8);
+$color-gray-10: rgba(32, 30, 32, 0.8); // Black
+
+$color-success: #03986c;
+$color-danger: #b2090f;
+$color-warning: #b6970b;
+$color-info: #078198;
+
+
+// RESPONSIVE BREAKPOINTS
+$bp-tiny: 20em; //320px
+$bp-smallest: 30em; //480px
+$bp-smaller: 40em; //600px
+$bp-small: 45em; //720px
+$bp-normal: 62.5em; //1000px
+$bp-large: 75em; //1200px
+$bp-larger: 100em; //1600px
+$bp-largest: 112.5em; //1800px
+
+// TYPOGRAPHY
+//@import url('https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway+Dots&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+$font-primary: 'Raleway', sans-serif;
+$font-display:  "Raleway Dots", sans-serif;
+$font-code: 'Space Mono', monospace;
+
+$font-tiny: .6rem;
+$font-smallest: 1rem;
+$font-smaller: 1.2rem;
+$font-small: 1.6rem;
+$font-normal: 2.4rem;
+$font-large: 3.2rem;
+$font-larger: 4.4rem;
+$font-largest: 5.5rem;
+$font-largest-x: 6.8rem;
+$font-largest-xx: 8rem;
+$font-largest-xxx: 9rem;
+$font-largest-xxxx: 10rem;
+$font-largest-xxxxx: 11rem;
+$font-largest-xxxxxx: 12rem;
+
+$line-tiny: .9rem;
+$line-smallest: 1.5rem;
+$line-smaller: 1.8rem;
+$line-small: 2.4rem;
+$line-normal: 3.6rem;
+$line-large: 4.8rem;
+$line-larger: 6.6rem;
+$line-largest: 8.25rem;
+$line-largest-x: 10.2rem;
+$line-largest-xx: 12rem;
+$line-largest-xxx: 13.5rem;
+$line-largest-xxxx: 15rem;
+$line-largest-xxxxx: 16.5rem;
+$line-largest-xxxxxx: 18rem;
+
+
+// SPACES
+$gap-tiny: .2rem;
+$gap-smallest: .4rem;
+$gap-smaller: 1rem;
+$gap-small: 2rem;
+$gap-normal: 4rem;
+$gap-large: 6rem;
+$gap-larger: 8rem;
+$gap-largest: 10rem;
+
+// SHADOWS
+$shadow-none: 0 0 0 rgba(0, 0, 0, 0);
+$shadow-smallest: 0 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+$shadow-smaller: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.2);
+$shadow-small: 0 0.5rem 0.9rem rgba(0, 0, 0, 0.2);
+$shadow-normal: 0 0.6rem 1.1rem rgba(0, 0, 0, 0.2);
+$shadow-large: 0 0.7rem 2rem rgba(0, 0, 0, 0.2);
+$shadow-larger: 0 .9rem 2.4rem rgba(0, 0, 0, 0.2);
+$shadow-largest: 0 1.2rem 3rem rgba(0, 0, 0, 0.2);
+$shadow-inset-smallest: inset 0 0 2px .1px rgba(0, 0, 0, 0.2);
+$shadow-inset-smaller: inset 0 0 3px 0.3px rgba(0, 0, 0, 0.2);
+$shadow-inset-small: inset 0 0 4px .6px rgba(0, 0, 0, 0.2);
+$shadow-inset-normal: inset 0 0 5px 1.2px rgba(0, 0, 0, 0.2);
+$shadow-inset-large: inset 0 0 6px 2.4px rgba(0, 0, 0, 0.2);
+$shadow-inset-larger: inset 0 0 7px 4.8px rgba(0, 0, 0, 0.2);
+$shadow-inset-largest: inset 0 0 8px 9.6px rgba(0, 0, 0, 0.2);
+
+// CORNERS
+$corner-radius-none: 0;
+$corner-radius-smallest: .2rem;
+$corner-radius-smaller: .3rem;
+$corner-radius-small: .4rem;
+$corner-radius-normal: .5rem;
+$corner-radius-large: .7rem;
+$corner-radius-larger: 1rem;
+$corner-radius-largest: 1.5rem;
+$corner-radius-round: 50%;
+
+// ANIMATION SEEDS & DELAYS
+$speed-fastest: .1s;
+$speed-faster: .2s;
+$speed-fast: .3s;
+$speed-normal: .4s;
+$speed-slow: .5s;
+$speed-slower: .6s;
+$speed-slowest: .7s;
+
+$delay-shortest: .1s;
+$delay-shorter: .2s;
+$delay-short: .3s;
+$delay-normal: .4s;
+$delay-long: .5s;
+$delay-longer: .6s;
+$delay-longest: .7s;
+
+// INPUTS
+$input-tiny: .5rem;
+$input-smallest: 1rem;
+$input-smaller: 2rem;
+$input-small: 3rem;
+$input-normal: 4rem;
+$input-large: 5rem;
+$input-larger: 6rem;
+$input-largest: 7rem;
+
